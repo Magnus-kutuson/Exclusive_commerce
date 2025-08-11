@@ -7,7 +7,6 @@ import { LucideAngularModule, Search, Heart, ShoppingCart } from 'lucide-angular
   selector: 'app-header',
   imports: [SubHeaderComponent, RouterLink, LucideAngularModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 

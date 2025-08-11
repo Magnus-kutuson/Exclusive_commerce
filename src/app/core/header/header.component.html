@@ -6,13 +6,13 @@
       Exclu<span class="text-red-500">sive</span>
     </h1>
 
-    <div class="flex gap-8">
+    <nav class="flex gap-8 " role="navigation" aria-label="Main Navigation">
       @for (link of navLinks; track link.label) {
         <a [routerLink]="link.link" class="text-gray-600">
           {{ link.label }}
         </a>
       }
-    </div>
+    </nav>
 
     
     <div class="flex items-center gap-6">
@@ -28,8 +28,12 @@
 
      
       <div class="flex gap-3">
-        <lucide-angular [img]="icons.Heart" [size]="20" class="text-gray-500" />
-        <lucide-angular [img]="icons.ShoppingCart" [size]="20" class="text-gray-500" />
+        <button type="button" aria-label="Add to wishlist">
+          <lucide-angular [img]="icons.Heart" [size]="20" />
+        </button>
+        <button type="button" aria-label="View shopping cart">
+          <lucide-angular [img]="icons.ShoppingCart" [size]="20"  />
+        </button>
       </div>
     </div>
   </div>
