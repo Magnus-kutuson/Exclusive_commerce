@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-flashsales',
   imports: [],
   templateUrl: './flashsales.component.html',
-  styleUrl: './flashsales.component.scss'
 })
 export class FlashsalesComponent {
 
