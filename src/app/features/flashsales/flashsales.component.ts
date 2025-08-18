@@ -6,7 +6,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
+import {
+  LucideAngularModule,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Eye,
+} from 'lucide-angular';
 
 @Component({
   selector: 'app-flashsales',
@@ -17,6 +23,8 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
   readonly icons = {
     ChevronLeft,
     ChevronRight,
+    Heart,
+    Eye,
   };
 
   daysRemaining: string = '00';
@@ -40,7 +48,7 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
       id: 1,
       title: 'Game Controller',
       image:
-        'https://images.unsplash.com/photo-1585079542156-2755d9c8aff0?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtZSUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8fDA%3D',
       price: 120,
       discount: 40,
     },
@@ -72,7 +80,7 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
       id: 5,
       title: 'Headphones',
       image:
-        'https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?q=80&w=800&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1585298723682-7115561c51b7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGhlYWRwaG9uZXN8ZW58MHx8MHx8fDA%3D',
       price: 199,
       discount: 15,
     },
@@ -96,7 +104,7 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
       id: 8,
       title: 'DSLR Camera',
       image:
-        'https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=800&auto=format&fit=crop',
+        'https://media.istockphoto.com/id/174508097/photo/black-and-white-rangefinder-camera-on-a-white-surface.webp?a=1&b=1&s=612x612&w=0&k=20&c=j_ZFd9AZnXOyLMIUTbamRFWjlCbfuFvMq5NbB0WL9d8=',
       price: 899,
       discount: 18,
     },

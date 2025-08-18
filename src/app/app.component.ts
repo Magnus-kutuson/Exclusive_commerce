@@ -5,10 +5,11 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HeroSectionComponent } from './features/hero-section/hero-section.component';
 import { FlashsalesComponent } from './features/flashsales/flashsales.component';
 import { CategoryComponent } from "./features/category/category.component";
+import { ProductComponent } from './features/product/product.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent, ProductComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
