@@ -7,7 +7,7 @@ import { LucideAngularModule, SendHorizontal, Facebook, Twitter, Instagram, Link
 templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-protected footerIcons = {
+readonly footerIcons = {
     SendHorizontal,
     Facebook,
     Twitter,
