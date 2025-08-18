@@ -1,1 +1,69 @@
-<p>product works!</p>
+<div class="max-w-[1170px] mx-auto py-6 pt-36">
+  <!-- Top Row: Title + Controls -->
+  <div class="flex items-center justify-between mb-6">
+    <!-- Title -->
+    <div class="flex items-center gap-4">
+      <div class="w-5 h-10 bg-red-500 rounded"></div>
+      <div>
+        <p class="text-red-500 font-bold uppercase">This Month</p>
+        <h1 class="font-bold text-4xl">Best Selling Product</h1>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-4">
+      <button
+        class="w-[9.9375rem] h-[3.5rem] bg-red-500 text-white font-semibold rounded hover:bg-orange-600 transition"
+      >
+        View All
+      </button>
+    </div>
+  </div>
+
+  <!-- Product grid (similar visuals to provided screenshot) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    @for (p of products; track p.id) {
+    <div class="bg-white rounded border border-gray-100">
+      <div
+        class="relative h-[220px] bg-gray-50 flex items-center justify-center"
+      >
+        <img
+          [src]="p.image"
+          alt="{{ p.title }}"
+          [attr.title]="p.title"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute top-3 right-3 flex flex-col gap-3">
+          <button
+            class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
+            aria-label="Add to wishlist"
+          >
+            <lucide-angular [img]="icons.Heart" [size]="16" />
+          </button>
+          <button
+            class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
+            aria-label="View"
+          >
+            <lucide-angular [img]="icons.Eye" [size]="16" />
+          </button>
+        </div>
+      </div>
+      <div class="p-4">
+        <p class="font-semibold truncate">{{ p.title }}</p>
+        <div class="mt-2 flex items-center gap-2">
+          <span class="text-red-500 font-bold">${{ p.price }}</span>
+        </div>
+        <div class="mt-2 flex items-center gap-1 text-amber-400">
+          @for (filled of getStarsArray(p.rating); track $index) {
+          <lucide-angular
+            [img]="icons.Star"
+            [size]="16"
+            [class]="filled ? 'fill-amber-400 stroke-amber-400' : ''"
+          />
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
