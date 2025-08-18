@@ -64,4 +64,46 @@
       </button>
     </div>
   </div>
+
+  <!-- Product carousel -->
+  <div
+    #viewport
+    class="mt-6 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
+  >
+    <div class="flex gap-6 min-w-full pr-2">
+      @for (product of products; track product.id) {
+      <div
+        data-card="true"
+        class="min-w-[270px] max-w-[270px] bg-white rounded border border-gray-100"
+      >
+        <div class="relative w-full h-[220px] bg-gray-50 rounded-t">
+          <img
+            [src]="product.image"
+            alt="{{ product.title }}"
+            [attr.title]="product.title"
+            class="w-full h-full object-cover rounded-t"
+          />
+          @if (product.discount) {
+          <span
+            class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold rounded px-2 py-1"
+            >-{{ product.discount }}%</span
+          >
+          }
+        </div>
+        <div class="p-3">
+          <p class="font-semibold truncate">{{ product.title }}</p>
+          <p class="text-red-500 font-bold mt-1">${{ product.price }}</p>
+        </div>
+      </div>
+      }
+    </div>
+</div>
+<div class="flex justify-center mt-6 border-b pb-10">
+  <button
+    class="w-[14.625rem] h-[3.5rem] bg-red-500 text-white font-semibold rounded hover:bg-orange-600 transition"
+  >
+    View All Products
+  </button>
+</div>
+
 </div>
