@@ -1,5 +1,17 @@
-import { Component } from '@angular/core';
-import { LucideAngularModule, Smartphone, Computer, Watch, Camera, Headphones, Gamepad, ChevronLeft, ChevronRight } from 'lucide-angular';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  LucideAngularModule,
+  Smartphone,
+  Computer,
+  Watch,
+  Camera,
+  Headphones,
+  Gamepad,
+  ChevronLeft,
+  ChevronRight,
+  Tablet,
+  Video,
+} from 'lucide-angular';
 
 @Component({
   selector: 'app-category',
@@ -7,13 +19,8 @@ import { LucideAngularModule, Smartphone, Computer, Watch, Camera, Headphones, G
   templateUrl: './category.component.html',
 })
 export class CategoryComponent {
-  icons: any;
-  next() {
-    throw new Error('Method not implemented.');
-  }
-  prev() {
-    throw new Error('Method not implemented.');
-  }
+  @ViewChild('categoryViewport', { static: true })
+  viewport?: ElementRef<HTMLDivElement>;
   categoryIcon = {
     Smartphone,
     Computer,
@@ -22,7 +29,9 @@ export class CategoryComponent {
     Headphones,
     Gamepad,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    Tablet,
+    Video,
   };
 
   categories = [
@@ -32,5 +41,33 @@ export class CategoryComponent {
     { label: 'Camera', icon: this.categoryIcon.Camera },
     { label: 'Headphones', icon: this.categoryIcon.Headphones },
     { label: 'Gamepad', icon: this.categoryIcon.Gamepad },
+    { label: 'Tablet', icon: this.categoryIcon.Tablet },
+    { label: 'Action Camera', icon: this.categoryIcon.Video },
+    { label: 'Earbuds', icon: this.categoryIcon.Headphones },
+    { label: 'Console', icon: this.categoryIcon.Gamepad },
+    { label: 'Accessories', icon: this.categoryIcon.Smartphone },
   ];
+
+  prev(): void {
+    this.scroll(-1);
+  }
+
+  next(): void {
+    this.scroll(1);
+  }
+
+  private scroll(direction: number): void {
+    const viewportElement = this.viewport?.nativeElement;
+    if (!viewportElement) return;
+    const firstCard = viewportElement.querySelector<HTMLElement>(
+      '[data-category-card="true"]'
+    );
+    const cardWidthWithGap = firstCard
+      ? firstCard.offsetWidth + 16
+      : viewportElement.clientWidth;
+    viewportElement.scrollBy({
+      left: direction * cardWidthWithGap,
+      behavior: 'smooth',
+    });
+  }
 }

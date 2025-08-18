@@ -29,17 +29,21 @@
     </div>
   </div>
 
-  <!-- Bottom Row: Categories Grid -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-    @for (category of categories; track category.label) {
+  <!-- Bottom Row: Categories Carousel -->
+  <div
+    #categoryViewport
+    class="mt-2 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] border-b border-gray-300 pb-10"
+  >
+    <div class="flex gap-4 min-w-full pr-1">
+      @for (category of categories; track category.label) {
       <div
-        class="w-full max-w-[10.625rem] h-[9.0625rem] border border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer"
+        data-category-card="true"
+        class="min-w-[10.625rem] max-w-[10.625rem] h-[9.0625rem] border border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer"
       >
         <lucide-angular [img]="category.icon" [size]="48" />
-        <label class="mt-4">{{ category.label }}</label>
+        <label for="{{ category.label }}" class="mt-4">{{ category.label }}</label>
       </div>
-    }
+      }
+    </div>
   </div>
 </div>
-
-
