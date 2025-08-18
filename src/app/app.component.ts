@@ -4,10 +4,11 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeroSectionComponent } from './features/hero-section/hero-section.component';
 import { FlashsalesComponent } from './features/flashsales/flashsales.component';
+import { CategoryComponent } from "./features/category/category.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
