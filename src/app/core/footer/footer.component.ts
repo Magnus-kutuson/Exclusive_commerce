@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
+import { LucideAngularModule, SendHorizontal, Facebook, Twitter, Instagram, Linkedin } from 'lucide-angular';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
-  templateUrl: './footer.component.html',
+  imports: [LucideAngularModule],
+templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-
+protected footerIcons = {
+    SendHorizontal,
+    Facebook,
+    Twitter,
+    Instagram,
+    Linkedin
+  };
 }
