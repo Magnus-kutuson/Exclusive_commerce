@@ -1,0 +1,49 @@
+<div class="max-w-[1170px] mx-auto py-6 pt-36">
+  <!-- Top Row: Title + Controls -->
+  <div class="flex items-center justify-between mb-6">
+    <!-- Title -->
+    <div class="flex items-center gap-4">
+      <div class="w-5 h-10 bg-red-500 rounded"></div>
+      <div>
+        <p class="text-red-500 font-bold uppercase">Categories</p>
+        <h1 class="font-bold text-4xl">Browse By Category</h1>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-4">
+      <button
+        (click)="prev()"
+        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+        aria-label="Previous"
+      >
+        <lucide-angular [img]="categoryIcon.ChevronLeft" [size]="18" />
+      </button>
+      <button
+        (click)="next()"
+        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+        aria-label="Next"
+      >
+        <lucide-angular [img]="categoryIcon.ChevronRight" [size]="18" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom Row: Categories Carousel -->
+  <div
+    #categoryViewport
+    class="mt-2 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] border-b border-gray-300 pb-10"
+  >
+    <div class="flex gap-4 min-w-full pr-1">
+      @for (category of categories; track category.label) {
+      <div
+        data-category-card="true"
+        class="min-w-[10.625rem] max-w-[10.625rem] h-[9.0625rem] border border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer"
+      >
+        <lucide-angular [img]="category.icon" [size]="48" />
+        <label for="{{ category.label }}" class="mt-4">{{ category.label }}</label>
+      </div>
+      }
+    </div>
+  </div>
+</div>
