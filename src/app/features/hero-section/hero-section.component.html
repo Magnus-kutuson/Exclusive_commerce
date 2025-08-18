@@ -1,0 +1,17 @@
+<div class="max-w-[1170px] mx-auto flex mt-10">
+  <!-- Left Content (list/text) -->
+<div class="flex-[1] border-r-2 border-gray-400 pr-8 space-y-2">
+  @for (category of categories; track category.label) {
+    <p class="flex items-center justify-between cursor-pointer hover:text-red-500">
+      {{ category.label }}
+      @if (category.hasIcon) {
+        <lucide-icon [img]="chevronRight"></lucide-icon>
+      }
+    </p>
+  }
+</div>
+
+  <!-- Right Hero Image (same width as nav links + cart) -->
+  <div class="flex-[3] pl-8">
+    <img src="/images/hero.svg" alt="Promotional hero graphic" class="w-full h-auto" />
+  </div>
