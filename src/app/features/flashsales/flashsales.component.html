@@ -1,4 +1,4 @@
-<div class="max-w-[1170px] mx-auto py-6 ">
+<div class="max-w-[1170px] mx-auto py-6">
   <div class="flex items-center justify-between">
     <div class="flex items-center gap-4">
       <div class="w-5 h-10 bg-red-500 rounded"></div>
@@ -8,26 +8,17 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-4">
-      <button
-        (click)="prev()"
-        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
-        aria-label="Previous"
-      >
-        <lucide-angular [img]="icons.ChevronLeft" [size]="18" />
-      </button>
-      <button
-        (click)="next()"
-        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
-        aria-label="Next"
-      >
-        <lucide-angular [img]="icons.ChevronRight" [size]="18" />
-      </button>
-    </div>
-  </div>
-
-  <div class="mt-6 flex items-end gap-6">
-    <div class="flex items-center gap-6">
+    <!-- Timer on the same line -->
+    <div class="flex items-end gap-6">
+      <div class="text-center">
+        <p class="text-sm text-gray-500">Days</p>
+        <div
+          class="w-16 h-16 rounded bg-black text-white flex items-center justify-center text-2xl font-bold"
+        >
+          {{ daysRemaining }}
+        </div>
+      </div>
+      <p class="text-2xl text-red-400">:</p>
       <div class="text-center">
         <p class="text-sm text-gray-500">Hours</p>
         <div
@@ -54,6 +45,23 @@
           {{ secondsRemaining }}
         </div>
       </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button
+        (click)="prev()"
+        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
+        aria-label="Previous"
+      >
+        <lucide-angular [img]="icons.ChevronLeft" [size]="18" />
+      </button>
+      <button
+        (click)="next()"
+        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
+        aria-label="Next"
+      >
+        <lucide-angular [img]="icons.ChevronRight" [size]="18" />
+      </button>
     </div>
   </div>
 </div>

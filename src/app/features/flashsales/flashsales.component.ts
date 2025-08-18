@@ -13,6 +13,7 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
     ChevronRight,
   };
 
+  daysRemaining: string = '00';
   hoursRemaining: string = '00';
   minutesRemaining: string = '00';
   secondsRemaining: string = '00';
@@ -39,6 +40,7 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
 
     const msRemaining = endOfDay.getTime() - now.getTime();
     if (msRemaining <= 0) {
+      this.daysRemaining = '00';
       this.hoursRemaining = '00';
       this.minutesRemaining = '00';
       this.secondsRemaining = '00';
@@ -51,9 +53,12 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
     const totalSeconds = Math.floor(msRemaining / 1000);
     const seconds = totalSeconds % 60;
     const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const days = Math.floor(totalHours / 24);
+    const hours = totalHours % 24;
     const minutes = totalMinutes % 60;
-    const hours = Math.floor(totalMinutes / 60);
 
+    this.daysRemaining = this.padTwoDigits(days);
     this.hoursRemaining = this.padTwoDigits(hours);
     this.minutesRemaining = this.padTwoDigits(minutes);
     this.secondsRemaining = this.padTwoDigits(seconds);
