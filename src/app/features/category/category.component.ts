@@ -62,8 +62,11 @@ export class CategoryComponent {
     const firstCard = viewportElement.querySelector<HTMLElement>(
       '[data-category-card="true"]'
     );
+    const gapPx = firstCard?.parentElement
+      ? parseFloat(getComputedStyle(firstCard.parentElement).columnGap || '0')
+      : 0;
     const cardWidthWithGap = firstCard
-      ? firstCard.offsetWidth + 16
+      ? firstCard.offsetWidth + gapPx
       : viewportElement.clientWidth;
     viewportElement.scrollBy({
       left: direction * cardWidthWithGap,
