@@ -167,6 +167,5 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
   next(): void {
     this.flashCarousel?.next();
   }
-
-  private scrollCarousel(direction: number): void {}
+  
 }
