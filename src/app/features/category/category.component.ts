@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   LucideAngularModule,
   Smartphone,
@@ -12,15 +12,15 @@ import {
   Tablet,
   Video,
 } from 'lucide-angular';
+import { ImageCarouselComponent } from '../../shared';
 
 @Component({
   selector: 'app-category',
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, ImageCarouselComponent],
   templateUrl: './category.component.html',
 })
 export class CategoryComponent {
-  @ViewChild('categoryViewport', { static: true })
-  viewport?: ElementRef<HTMLDivElement>;
+  @ViewChild(ImageCarouselComponent) carousel?: ImageCarouselComponent;
   categoryIcon = {
     Smartphone,
     Computer,
@@ -49,28 +49,12 @@ export class CategoryComponent {
   ];
 
   prev(): void {
-    this.scroll(-1);
+    this.carousel?.prev();
   }
 
   next(): void {
-    this.scroll(1);
+    this.carousel?.next();
   }
 
-  private scroll(direction: number): void {
-    const viewportElement = this.viewport?.nativeElement;
-    if (!viewportElement) return;
-    const firstCard = viewportElement.querySelector<HTMLElement>(
-      '[data-category-card="true"]'
-    );
-    const gapPx = firstCard?.parentElement
-      ? parseFloat(getComputedStyle(firstCard.parentElement).columnGap || '0')
-      : 0;
-    const cardWidthWithGap = firstCard
-      ? firstCard.offsetWidth + gapPx
-      : viewportElement.clientWidth;
-    viewportElement.scrollBy({
-      left: direction * cardWidthWithGap,
-      behavior: 'smooth',
-    });
-  }
+  // Scrolling is handled inside the reusable ImageCarouselComponent
 }

@@ -66,52 +66,50 @@
   </div>
 
   <!-- Product carousel -->
-  <div
-    #viewport
-    class="mt-6 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
+  <app-image-carousel
+    class="mt-6 block"
+    [items]="products"
+    [gapClass]="'gap-6'"
+    [cardWrapperClasses]="
+      'min-w-[270px] max-w-[270px] bg-white rounded border border-gray-100'
+    "
   >
-    <div class="flex gap-6 min-w-full pr-2">
-      @for (product of products; track product.id) {
-      <div
-        data-card="true"
-        class="min-w-[270px] max-w-[270px] bg-white rounded border border-gray-100"
-      >
-        <div class="relative w-full h-[220px] bg-gray-50 rounded-t">
-          <img
-            [src]="product.image"
-            alt="{{ product.title }}"
-            [attr.title]="product.title"
-            class="w-full h-full object-cover rounded-t"
-          />
-          <div class="absolute top-3 right-3 flex flex-col gap-3">
-            <button
-              class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
-              aria-label="Add to wishlist"
-            >
-              <lucide-angular [img]="icons.Heart" [size]="16" />
-            </button>
-            <button
-              class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
-              aria-label="View"
-            >
-              <lucide-angular [img]="icons.Eye" [size]="16" />
-            </button>
-          </div>
-          @if (product.discount) {
-          <span
-            class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold rounded px-2 py-1"
-            >-{{ product.discount }}%</span
+    <ng-template let-product>
+      <div class="relative w-full h-[220px] bg-gray-50 rounded-t">
+        <img
+          [src]="product.image"
+          alt="{{ product.title }}"
+          [attr.title]="product.title"
+          class="w-full h-full object-cover rounded-t"
+        />
+        <div class="absolute top-3 right-3 flex flex-col gap-3">
+          <button
+            class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
+            aria-label="Add to wishlist"
           >
-          }
+            <lucide-angular [img]="icons.Heart" [size]="16" />
+          </button>
+          <button
+            class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center"
+            aria-label="View"
+          >
+            <lucide-angular [img]="icons.Eye" [size]="16" />
+          </button>
         </div>
-        <div class="p-3">
-          <p class="font-semibold truncate">{{ product.title }}</p>
-          <p class="text-red-500 font-bold mt-1">${{ product.price }}</p>
-        </div>
+        @if (product.discount) {
+        <span
+          class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold rounded px-2 py-1"
+          >-{{ product.discount }}%</span
+        >
+        }
       </div>
-      }
-    </div>
-  </div>
+      <div class="p-3">
+        <p class="font-semibold truncate">{{ product.title }}</p>
+        <p class="text-red-500 font-bold mt-1">${{ product.price }}</p>
+      </div>
+    </ng-template>
+  </app-image-carousel>
+
   <div class="flex justify-center mt-6 border-b border-gray-300 pb-10">
     <button
       class="w-[14.625rem] h-[3.5rem] bg-red-500 text-white font-semibold rounded hover:bg-orange-600 transition"
