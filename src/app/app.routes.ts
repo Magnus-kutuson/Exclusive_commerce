@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
-        path: 'home',
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+        path: '',
+        component: LayoutComponent,
+        children: [
+
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            {
+                path: 'home',
+                loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+            },
+        ]
     },
     {
         path: 'signup',
