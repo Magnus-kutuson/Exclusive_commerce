@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="flex flex-row items-center justify-center h-screen">
+  <!-- Left: Image -->
+  <div class="flex-1 flex items-center justify-center">
+    <img src="images/auth-img.svg" alt="Auth" class="w-full h-full object-cover" />
+  </div>
+
+  <!-- Right: Form -->
+  <div class="flex-1 flex flex-col items-center px-10">
+    <div class="flex flex-col gap-5 mb-8">
+      <p class="text-4xl">Create an account</p>
+      <p>Enter your details below</p>
+    </div>
+
+    <form class="flex flex-col gap-8 w-full max-w-md" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <!-- Email or Phone -->
+      <div>
+        <input 
+          type="text" 
+          placeholder="Email or Phone Number" 
+          formControlName="emailOrPhone"
+          class="outline-none w-full h-[2rem] border-b"
+          [ngClass]="{
+            'border-gray-600': !(loginForm.get('emailOrPhone')?.touched && loginForm.get('emailOrPhone')?.invalid),
+            'border-red-500': loginForm.get('emailOrPhone')?.touched && loginForm.get('emailOrPhone')?.invalid
+          }"
+        />
+        @if (loginForm.get('emailOrPhone')?.touched && loginForm.get('emailOrPhone')?.invalid) {
+          <div class="text-red-500 text-sm mt-1">
+            Please enter a valid email or phone number
+          </div>
+        }
+      </div>
+
+      <!-- Password -->
+      <div>
+        <input 
+          type="password" 
+          placeholder="Password" 
+          formControlName="password"
+          class="outline-none w-full h-[2rem] border-b"
+          [ngClass]="{
+            'border-gray-600': !(loginForm.get('password')?.touched && loginForm.get('password')?.invalid),
+            'border-red-500': loginForm.get('password')?.touched && loginForm.get('password')?.invalid
+          }"
+        />
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+          <div class="text-red-500 text-sm mt-1">
+            Password must be at least 6 characters
+          </div>
+        }
+      </div>
+
+      <button 
+        type="submit" 
+        [disabled]="loginForm.invalid"
+        class="w-full h-[3.5rem] bg-red-500 text-white disabled:bg-gray-200"
+      >
+        Login
+      </button>
+    </form>
+
+    <div class="w-full max-w-md h-[3.5rem] border border-gray-600 mt-10 flex items-center justify-center gap-2 cursor-pointer">
+      <img src="images/google-icon.svg" alt="Google-icon">
+      <p class="text-center">Login with Google</p>
+    </div>
+    <p class="text-center mt-10">Don't have an account? <a routerLink="/signup" class="underline">Sign up</a></p>
+  </div>
+</div>
