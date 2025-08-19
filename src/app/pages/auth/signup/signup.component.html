@@ -1,1 +1,25 @@
-<p>signup works!</p>
+<div class="w-full max-w-[371px] h-[33.125rem] border border-red-400">
+    <div class="flex flex-col gap-5 mb-8">
+        <p class="text-4xl">Create an account</p>
+        <p>Enter your details below</p>
+    </div>
+    <form action="" class="flex flex-col gap-8">
+        <div>
+            <input type="text" placeholder="Name" class="outline-none w-full h-[2rem] border-b border-gray-600">
+        </div>
+        <div>
+            <input type="text" placeholder="Email or Phone Number" class="outline-none w-full h-[2rem] border-b border-gray-600">
+        </div>
+        <div>
+            <input type="text" placeholder="Password" class="outline-none w-full h-[2rem] border-b border-gray-600">
+        </div>
+        <button class="w-full h-[3.5rem] bg-red-500 text-white">Create Account</button>
+    </form>
+    <div class="w-full h-[3.5rem] border border-gray-600 mt-8 flex items-center justify-center gap-2 cursor-pointer">
+        <img src="images/google-icon.svg" alt="Google-icon">
+        <p class="text-center">Sign up with Google</p>
+    </div>
+    <p class="text-center">Already have an account? <a routerLink="/auth/login" class="underline">Login</a></p>
+</div>
+
+
