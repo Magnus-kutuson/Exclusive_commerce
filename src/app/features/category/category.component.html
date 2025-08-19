@@ -29,21 +29,19 @@
     </div>
   </div>
 
-  <!-- Bottom Row: Categories Carousel -->
-  <div
-    #categoryViewport
-    class="mt-2 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] border-b border-gray-300 pb-10"
+  <!-- Bottom Row: Categories Carousel (reusable) -->
+  <app-image-carousel
+    [items]="categories"
+    [gapClass]="'gap-4'"
+    [cardWrapperClasses]="
+      'min-w-[10.625rem] max-w-[10.625rem] h-[9.0625rem] border border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer'
+    "
   >
-    <div class="flex gap-4 min-w-full pr-1">
-      @for (category of categories; track category.label) {
-      <div
-        data-category-card="true"
-        class="min-w-[10.625rem] max-w-[10.625rem] h-[9.0625rem] border border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer"
-      >
-        <lucide-angular [img]="category.icon" [size]="48" />
-        <label for="{{ category.label }}" class="mt-4">{{ category.label }}</label>
-      </div>
-      }
-    </div>
-  </div>
+    <ng-template let-category>
+      <lucide-angular [img]="category.icon" [size]="48" />
+      <label for="{{ category.label }}" class="mt-4">{{
+        category.label
+      }}</label>
+    </ng-template>
+  </app-image-carousel>
 </div>
