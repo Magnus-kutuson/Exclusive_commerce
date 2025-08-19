@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-login',
    imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
