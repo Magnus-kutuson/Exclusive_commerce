@@ -8,10 +8,11 @@ import { CategoryComponent } from "./features/category/category.component";
 import { ProductComponent } from './features/product/product.component';
 import { BannerComponent } from './features/banner/banner.component';
 import { OurProductComponent } from './features/our-product/our-product.component';
+import { NewArrivalsComponent } from "./features/new-arrivals/new-arrivals.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent, ProductComponent, BannerComponent, OurProductComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent, ProductComponent, BannerComponent, OurProductComponent, NewArrivalsComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
