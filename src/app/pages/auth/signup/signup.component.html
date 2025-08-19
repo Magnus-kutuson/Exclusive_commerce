@@ -3,23 +3,80 @@
         <p class="text-4xl">Create an account</p>
         <p>Enter your details below</p>
     </div>
-    <form action="" class="flex flex-col gap-8">
-        <div>
-            <input type="text" placeholder="Name" class="outline-none w-full h-[2rem] border-b border-gray-600">
-        </div>
-        <div>
-            <input type="text" placeholder="Email or Phone Number" class="outline-none w-full h-[2rem] border-b border-gray-600">
-        </div>
-        <div>
-            <input type="text" placeholder="Password" class="outline-none w-full h-[2rem] border-b border-gray-600">
-        </div>
-        <button class="w-full h-[3.5rem] bg-red-500 text-white">Create Account</button>
-    </form>
-    <div class="w-full h-[3.5rem] border border-gray-600 mt-8 flex items-center justify-center gap-2 cursor-pointer">
+<form class="flex flex-col gap-8" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <div>
+    <input 
+      type="text" 
+      placeholder="Name" 
+      formControlName="name"
+      class="outline-none w-full h-[2rem] border-b"
+      [ngClass]="{
+        'border-gray-600': !(signupForm.get('name')?.touched && signupForm.get('name')?.invalid),
+        'border-red-500': signupForm.get('name')?.touched && signupForm.get('name')?.invalid
+      }"
+    />
+    @if (signupForm.get('name')?.touched && signupForm.get('name')?.invalid) {
+      <div class="text-red-500 text-sm mt-1">
+        Name is required
+      </div>
+    }
+  </div>
+
+  <!-- Email or Phone -->
+  <div>
+    <input 
+      type="text" 
+      placeholder="Email or Phone Number" 
+      formControlName="emailOrPhone"
+      class="outline-none w-full h-[2rem] border-b"
+      [ngClass]="{
+        'border-gray-600': !(signupForm.get('emailOrPhone')?.touched && signupForm.get('emailOrPhone')?.invalid),
+        'border-red-500': signupForm.get('emailOrPhone')?.touched && signupForm.get('emailOrPhone')?.invalid
+      }"
+    />
+    @if (signupForm.get('emailOrPhone')?.touched && signupForm.get('emailOrPhone')?.invalid) {
+      <div class="text-red-500 text-sm mt-1">
+        Please enter a valid email or phone number
+      </div>
+    }
+  </div>
+
+  <!-- Password -->
+  <div>
+    <input 
+      type="password" 
+      placeholder="Password" 
+      formControlName="password"
+      class="outline-none w-full h-[2rem] border-b"
+      [ngClass]="{
+        'border-gray-600': !(signupForm.get('password')?.touched && signupForm.get('password')?.invalid),
+        'border-red-500': signupForm.get('password')?.touched && signupForm.get('password')?.invalid
+      }"
+    />
+    @if (signupForm.get('password')?.touched && signupForm.get('password')?.invalid) {
+      <div class="text-red-500 text-sm mt-1">
+        Password must be at least 6 characters
+      </div>
+    }
+  </div>
+
+  <button 
+    type="submit" 
+    [disabled]="signupForm.invalid"
+    class="w-full h-[3.5rem] bg-red-500 text-white disabled:bg-gray-200"
+  >
+    Create Account
+  </button>
+</form>
+
+
+
+    <div class="w-full h-[3.5rem] border border-gray-600 mt-10 flex items-center justify-center gap-2 cursor-pointer">
         <img src="images/google-icon.svg" alt="Google-icon">
         <p class="text-center">Sign up with Google</p>
     </div>
-    <p class="text-center">Already have an account? <a routerLink="/auth/login" class="underline">Login</a></p>
+    <p class="text-center mt-10">Already have an account? <a routerLink="/auth/login" class="underline">Login</a></p>
 </div>
 
 
