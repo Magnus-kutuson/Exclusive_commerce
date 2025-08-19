@@ -6,11 +6,11 @@ import { HeroSectionComponent } from './features/hero-section/hero-section.compo
 import { FlashsalesComponent } from './features/flashsales/flashsales.component';
 import { CategoryComponent } from "./features/category/category.component";
 import { ProductComponent } from './features/product/product.component';
-import { OurProductComponent } from "./features/our-product/our-product.component";
+import { BannerComponent } from './features/banner/banner.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent, ProductComponent, OurProductComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HeroSectionComponent, FlashsalesComponent, CategoryComponent, ProductComponent, BannerComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
