@@ -13,13 +13,15 @@ import {
   Heart,
   Eye,
 } from 'lucide-angular';
+import { ImageCarouselComponent } from '../../shared';
 
 @Component({
   selector: 'app-flashsales',
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, ImageCarouselComponent],
   templateUrl: './flashsales.component.html',
 })
 export class FlashsalesComponent implements OnInit, OnDestroy {
+  @ViewChild(ImageCarouselComponent) flashCarousel?: ImageCarouselComponent;
   readonly icons = {
     ChevronLeft,
     ChevronRight,
@@ -159,24 +161,12 @@ export class FlashsalesComponent implements OnInit, OnDestroy {
   }
 
   prev(): void {
-    this.scrollCarousel(-1);
+    this.flashCarousel?.prev();
   }
 
   next(): void {
-    this.scrollCarousel(1);
+    this.flashCarousel?.next();
   }
 
-  private scrollCarousel(direction: number): void {
-    const viewportElement = this.viewport?.nativeElement;
-    if (!viewportElement) return;
-    const firstCard =
-      viewportElement.querySelector<HTMLElement>('[data-card="true"]');
-    const cardWidthWithGap = firstCard
-      ? firstCard.offsetWidth + 24
-      : viewportElement.clientWidth;
-    viewportElement.scrollBy({
-      left: direction * cardWidthWithGap,
-      behavior: 'smooth',
-    });
-  }
+  private scrollCarousel(direction: number): void {}
 }
