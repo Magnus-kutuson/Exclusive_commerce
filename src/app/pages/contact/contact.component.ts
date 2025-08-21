@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LucideAngularModule, Phone } from 'lucide-angular';
+import { LucideAngularModule, Mail, Phone } from 'lucide-angular';
 
 @Component({
   selector: 'app-contact',
@@ -10,6 +10,7 @@ import { LucideAngularModule, Phone } from 'lucide-angular';
 export class ContactComponent implements OnInit {
   contactIcons = {
     Phone,
+    Mail
   };
 
   contactForm!: FormGroup;
