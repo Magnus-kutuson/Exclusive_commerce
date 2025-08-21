@@ -6,7 +6,6 @@ import { LucideAngularModule, Phone } from 'lucide-angular';
   selector: 'app-contact',
   imports: [LucideAngularModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements OnInit {
   contactIcons = {
