@@ -37,7 +37,7 @@ export class OurProductComponent {
       id: 1,
       title: 'Pet Food',
       image:
-        'https://images.unsplash.com/photo-1676193866128-03a926df76ef?w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1604908554027-805b3a0f0ab9?q=80&w=1200&auto=format&fit=crop',
       price: 100,
       rating: 4.3,
     },
@@ -45,7 +45,7 @@ export class OurProductComponent {
       id: 2,
       title: 'Canon DSLR',
       image:
-        'https://media.istockphoto.com/id/2199413104/photo/vintage-reflex-camera.webp?a=1&b=1&s=612x612&w=0&k=20&c=bz2HUR5CTZjMco2ajrVCKLsYBZKUqzxCDLUzkas4ZfQ=',
+        'https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1200&auto=format&fit=crop',
       price: 360,
       rating: 4.5,
     },
@@ -96,71 +96,6 @@ export class OurProductComponent {
         'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=1200&auto=format&fit=crop',
       price: 660,
       rating: 4.2,
-    },
-    // new items
-    {
-      id: 9,
-      title: 'Smartphone',
-      image:
-        'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop',
-      price: 1200,
-      rating: 4.8,
-    },
-    {
-      id: 10,
-      title: 'Headphones',
-      image:
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop',
-      price: 240,
-      rating: 4.5,
-    },
-    {
-      id: 11,
-      title: 'Smartwatch',
-      image:
-        'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?q=80&w=1200&auto=format&fit=crop',
-      price: 380,
-      rating: 4.6,
-    },
-    {
-      id: 12,
-      title: 'Sneakers',
-      image:
-        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
-      price: 180,
-      rating: 4.3,
-    },
-    {
-      id: 13,
-      title: 'Backpack',
-      image:
-        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&auto=format&fit=crop',
-      price: 320,
-      rating: 4.7,
-    },
-    {
-      id: 14,
-      title: 'Coffee Maker',
-      image:
-        'https://plus.unsplash.com/premium_photo-1664192424507-89e53c421ade?w=600&auto=format&fit=crop',
-      price: 460,
-      rating: 4.4,
-    },
-    {
-      id: 15,
-      title: 'Gaming Chair',
-      image:
-        'https://images.unsplash.com/photo-1670946839270-cc4febd43b09?w=600&auto=format&fit=crop',
-      price: 840,
-      rating: 4.5,
-    },
-    {
-      id: 16,
-      title: 'Wrist Watch',
-      image:
-        'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop',
-      price: 620,
-      rating: 4.6,
     },
   ];
 
