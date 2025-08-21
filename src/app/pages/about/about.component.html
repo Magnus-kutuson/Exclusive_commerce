@@ -15,17 +15,17 @@
   @for (item of details; track item.description) {
     <div class="flex flex-col items-center justify-center p-6 border border-gray-200 rounded-lg shadow-sm text-center hover:bg-red-500 hover:text-white">
       
-      <!-- Icon wrapper -->
+     
       <div class="bg-gray-100 rounded-full w-20 h-20 flex justify-center items-center hover:bg-red-100">
         <div class="bg-black rounded-full w-14 h-14 flex justify-center items-center hover:bg-white">
           <lucide-icon [img]="item.icon" [size]="36" class="text-white hover:text-black"></lucide-icon>
         </div>
       </div>
 
-      <!-- Rate -->
+      
       <p class="mt-4 text-2xl font-semibold ">{{ item.rate }}</p>
 
-      <!-- Description -->
+     
       <p class="text-nowrap">{{ item.description }}</p>
     </div>
   }
@@ -54,7 +54,7 @@
     </button>
   </div>
   
-  <!-- Carousel of Team Members -->
+ 
   <div class="max-w-6xl mx-auto">
     <app-image-carousel 
       [items]="management" 
@@ -63,7 +63,7 @@
       <ng-template let-member>
         <div class="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-sm">
           
-          <!-- Member Image -->
+        
           <div class="w-72 h-80 mb-6 overflow-hidden rounded-lg bg-gray-100">
             <img 
               [src]="member.image" 
@@ -72,11 +72,10 @@
             />
           </div>
 
-          <!-- Member Info -->
+          
           <h3 class="text-xl font-semibold mb-2">{{ member.name }}</h3>
           <p class="text-gray-600 mb-4">{{ member.position }}</p>
 
-          <!-- Social Links -->
           @if (member.socialLinks) {
             <div class="flex gap-4">
               <a [href]="member.socialLinks.twitter" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors" aria-label="Twitter">
@@ -100,14 +99,14 @@
   @for (feature of features; track $index) {
     <div class="h-[10.0625rem] flex items-center justify-center px-6">
       <div class="flex flex-col items-center gap-4">
-        <!-- Icon wrapper -->
+        
         <div class="bg-gray-100 rounded-full w-[5rem] h-[5rem] flex justify-center items-center">
           <div class="bg-black rounded-full w-[3.625rem] h-[3.625rem] flex justify-center items-center">
             <lucide-icon [img]="feature.icon" [size]="24" class="text-white"></lucide-icon>
           </div>
         </div>
 
-        <!-- Text -->
+        
         <div class="flex flex-col">
           <h1 class="text-lg font-semibold">{{ feature.title }}</h1>
           <p class="text-sm text-gray-600">{{ feature.description }}</p>
