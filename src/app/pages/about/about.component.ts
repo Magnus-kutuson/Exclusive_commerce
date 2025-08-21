@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Banknote, CircleDollarSign, Headphones, Instagram, Linkedin, LucideAngularModule, Luggage, ShieldCheck, Store, Truck, Twitter } from 'lucide-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Banknote, ChevronLeft, ChevronRight, CircleDollarSign, Headphones, Instagram, Linkedin, LucideAngularModule, Luggage, ShieldCheck, Store, Truck, Twitter } from 'lucide-angular';
 import { ImageCarouselComponent } from '../../shared/image-carousel/image-carousel.component';
 
 
@@ -10,6 +10,7 @@ import { ImageCarouselComponent } from '../../shared/image-carousel/image-carous
   styleUrl: './about.component.scss',
 })
 export class AboutComponent {
+  @ViewChild(ImageCarouselComponent) aboutCarousel?: ImageCarouselComponent;
   icons = {
     Truck,
     Headphones,
@@ -21,6 +22,8 @@ export class AboutComponent {
     Twitter,
     Instagram,
     Linkedin,
+    ChevronLeft,
+    ChevronRight
   };
 
   management = [
@@ -165,4 +168,12 @@ export class AboutComponent {
       description: 'We return money within 30 days',
     },
   ];
+
+  prev(): void {
+    this.aboutCarousel?.prev();
+  }
+
+  next(): void {
+    this.aboutCarousel?.next();
+  }
 }
