@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { SubHeaderComponent } from '../sub-header/sub-header.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive, } from '@angular/router';
 import { LucideAngularModule, Search, Heart, ShoppingCart } from 'lucide-angular';
 
 @Component({
   selector: 'app-header',
-  imports: [SubHeaderComponent, RouterLink, LucideAngularModule],
+  imports: [SubHeaderComponent, RouterLink, RouterLinkActive, LucideAngularModule],
   templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
