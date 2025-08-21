@@ -8,8 +8,12 @@
 
     <nav class="flex gap-8 " role="navigation" aria-label="Main Navigation">
       @for (link of navLinks; track link.label) {
-        <a [routerLink]="link.link" class="text-gray-600">
+        <a [routerLink]="link.link" class="text-gray-600"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+        >
           {{ link.label }}
+
         </a>
       }
     </nav>

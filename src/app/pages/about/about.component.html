@@ -1,0 +1,119 @@
+<div class="max-w-[1170px] mx-auto py-6 pt-36">
+  <div class="flex flex-row w-full gap-8">
+    <div class="w-1/2 pr-4">
+      <p class="text-4xl font-semibold mb-8">Our Story</p>
+      <p class="mb-8">Launched in 2015, Exclusive is South Asia’s premier online shopping marketplace with an active presence in Bangladesh. Supported by a wide range of tailored marketing, data, and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 million customers across the region.</p>
+      <p>Exclusive has more than 1 million products to offer and is growing very fast. Exclusive offers a diverse assortment across categories ranging from consumer electronics to accessories.</p>
+    </div>
+    <div class="w-1/2 -mt-[100px]">
+      <img src="images/shop.svg" alt="About" class="w-full" />
+    </div>
+  </div>
+
+
+<div class="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-24 cursor-pointer">
+  @for (item of details; track item.description) {
+    <div class="flex flex-col items-center justify-center p-6 border border-gray-200 rounded-lg shadow-sm text-center hover:bg-red-500 hover:text-white">
+      
+     
+      <div class="bg-gray-100 rounded-full w-20 h-20 flex justify-center items-center hover:bg-red-100">
+        <div class="bg-black rounded-full w-14 h-14 flex justify-center items-center hover:bg-white">
+          <lucide-icon [img]="item.icon" [size]="36" class="text-white hover:text-black"></lucide-icon>
+        </div>
+      </div>
+
+      
+      <p class="mt-4 text-2xl font-semibold ">{{ item.rate }}</p>
+
+     
+      <p class="text-nowrap">{{ item.description }}</p>
+    </div>
+  }
+</div>
+
+
+<div class="mt-24 mb-16">
+  <h2 class="text-3xl font-semibold text-center mb-12">Meet Our Team</h2>
+
+
+   <div class="flex items-center gap-4 justify-between">
+      <button
+        (click)="prev()"
+        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
+        aria-label="Previous"
+      >
+        <lucide-angular [img]="icons.ChevronLeft" [size]="18" />
+      </button>
+
+      <button
+      (click)="next()"
+      class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center"
+      aria-label="Next"
+      >
+      <lucide-angular [img]="icons.ChevronRight" [size]="18" />
+    </button>
+  </div>
+  
+ 
+  <div class="max-w-6xl mx-auto">
+    <app-image-carousel 
+      [items]="management" 
+      [gapClass]="'gap-8'" 
+      [cardWrapperClasses]="'min-w-80 flex-shrink-0'">
+      <ng-template let-member>
+        <div class="flex flex-col items-center text-center bg-white p-8 rounded-lg shadow-sm">
+          
+        
+          <div class="w-72 h-80 mb-6 overflow-hidden rounded-lg bg-gray-100">
+            <img 
+              [src]="member.image" 
+              [alt]="member.name" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          
+          <h3 class="text-xl font-semibold mb-2">{{ member.name }}</h3>
+          <p class="text-gray-600 mb-4">{{ member.position }}</p>
+
+          @if (member.socialLinks) {
+            <div class="flex gap-4">
+              <a [href]="member.socialLinks.twitter" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors" aria-label="Twitter">
+                <lucide-icon [img]="icons.Twitter" [size]="18" class="text-gray-700"></lucide-icon>
+              </a>
+              <a [href]="member.socialLinks.instagram" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors" aria-label="Instagram">
+                <lucide-icon [img]="icons.Instagram" [size]="18" class="text-gray-700"></lucide-icon>
+              </a>
+              <a [href]="member.socialLinks.linkedin" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors" aria-label="LinkedIn">
+                <lucide-icon [img]="icons.Linkedin" [size]="18" class="text-gray-700"></lucide-icon>
+              </a>
+            </div>
+          }
+        </div>
+      </ng-template>
+    </app-image-carousel>
+  </div>
+</div>
+
+    <div class="my-24 grid grid-cols-3 gap-6 w-full max-w-[60rem] mx-auto">
+  @for (feature of features; track $index) {
+    <div class="h-[10.0625rem] flex items-center justify-center px-6">
+      <div class="flex flex-col items-center gap-4">
+        
+        <div class="bg-gray-100 rounded-full w-[5rem] h-[5rem] flex justify-center items-center">
+          <div class="bg-black rounded-full w-[3.625rem] h-[3.625rem] flex justify-center items-center">
+            <lucide-icon [img]="feature.icon" [size]="24" class="text-white"></lucide-icon>
+          </div>
+        </div>
+
+        
+        <div class="flex flex-col">
+          <h1 class="text-lg font-semibold">{{ feature.title }}</h1>
+          <p class="text-sm text-gray-600">{{ feature.description }}</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+</div>
+
