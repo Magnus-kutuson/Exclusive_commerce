@@ -6,19 +6,17 @@
       Exclu<span class="text-red-500">sive</span>
     </h1>
 
-    <nav class="flex gap-8 " role="navigation" aria-label="Main Navigation">
-      @for (link of navLinks; track link.label) {
-        <a [routerLink]="link.link" class="text-gray-600"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-        >
-          {{ link.label }}
+   <nav class="flex gap-8" role="navigation" aria-label="Main Navigation">
+  @for (link of navLinks; track link.label) {
+    <a [routerLink]="link.link"
+       class="text-gray-600"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      {{ link.label }}
+    </a>
+  }
+</nav>
 
-        </a>
-      }
-    </nav>
-
-    
     <div class="flex items-center gap-6">
      
       <div class="border border-gray-300 rounded px-2 py-1 flex items-center w-[15.1875rem] h-[2.375rem] bg-gray-200">
