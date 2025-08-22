@@ -1,21 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule, Mail, Phone } from 'lucide-angular';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @Component({
   selector: 'app-contact',
-  imports: [LucideAngularModule, ReactiveFormsModule],
+  imports: [LucideAngularModule, ReactiveFormsModule, BreadcrumbModule, RouterLink, CommonModule, RouterLinkActive],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit {
   contactIcons = {
     Phone,
-    Mail
+    Mail,
   };
 
   contactForm!: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
@@ -36,6 +39,12 @@ export class ContactComponent implements OnInit {
     }
   }
 
+  home = { label: 'Home', routerLink: '/home' };
+
+  items = [
+    { label: 'Contact', routerLink: '/contact' },
+  ]
+
   get f() {
     return this.contactForm.controls;
   }
@@ -43,8 +52,16 @@ export class ContactComponent implements OnInit {
   getErrorMessage(fieldName: string): string {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field.touched) {
-      if (field.errors['required']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
-      if (field.errors['minlength']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+      if (field.errors['required'])
+        return `${
+          fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
+        } is required`;
+      if (field.errors['minlength'])
+        return `${
+          fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
+        } must be at least ${
+          field.errors['minlength'].requiredLength
+        } characters`;
       if (field.errors['email']) return 'Enter a valid email address';
       if (field.errors['pattern']) return 'Enter a valid phone number';
     }
