@@ -5,21 +5,27 @@ import { LucideAngularModule, Search, Heart, ShoppingCart } from 'lucide-angular
 
 @Component({
   selector: 'app-header',
-  imports: [SubHeaderComponent, RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [
+    SubHeaderComponent,
+    RouterLink,
+    RouterLinkActive,
+    LucideAngularModule
+  ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   readonly icons = {
-    Search, Heart, ShoppingCart
-   };
+    Search,
+    Heart,
+    ShoppingCart,
+  };
 
   navLinks = [
     { label: 'Home', link: '/home' },
     { label: 'Contact', link: '/contact' },
     { label: 'About', link: '/about' },
-    { label: 'Sign Up', link: '/signup' }
-  ]
+    { label: 'Sign Up', link: '/signup' },
+  ];
 
 }

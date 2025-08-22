@@ -1,13 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { Banknote, ChevronLeft, ChevronRight, CircleDollarSign, Headphones, Instagram, Linkedin, LucideAngularModule, Luggage, ShieldCheck, Store, Truck, Twitter } from 'lucide-angular';
 import { ImageCarouselComponent } from '../../shared/image-carousel/image-carousel.component';
+import { Breadcrumb } from "primeng/breadcrumb";
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-about',
-  imports: [LucideAngularModule, ImageCarouselComponent],
+  imports: [LucideAngularModule, ImageCarouselComponent, Breadcrumb, RouterLink, RouterLinkActive],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
 })
 export class AboutComponent {
   @ViewChild(ImageCarouselComponent) aboutCarousel?: ImageCarouselComponent;
@@ -23,8 +25,12 @@ export class AboutComponent {
     Instagram,
     Linkedin,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
   };
+
+  home = { label: 'Home', routerLink: '/home' };
+
+  items = [{ label: 'About', routerLink: '/about' }];
 
   management = [
     {
