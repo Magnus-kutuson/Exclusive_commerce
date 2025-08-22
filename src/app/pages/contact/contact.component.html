@@ -1,0 +1,103 @@
+<div class="max-w-[1170px] mx-auto py-6 pt-36 flex justify-between">
+  <div class="w-full max-w-[21.25rem] h-[28.5625rem] p-6 flex flex-col gap-4 rounded-lg shadow-lg">
+
+    <!-- Header -->
+    <div class="flex items-center gap-4">
+      <div class="w-10 h-10 bg-red-500 rounded-full flex justify-center items-center">
+        <lucide-icon [img]="contactIcons.Phone" [size]="24" class="text-white"></lucide-icon>
+      </div>
+      <p class="text-lg text-gray-600 font-bold">Call To Us</p>
+    </div>
+
+    <!-- Body -->
+    <div class="flex flex-col gap-2 border-b border-black pb-8">
+      <p>We are available 24/7, 7 days a week.</p>
+      <p>Phone: +8801611112222</p>
+    </div>
+
+
+    <div class="flex items-center gap-4">
+       <div class="w-10 h-10 bg-red-500 rounded-full flex justify-center items-center">
+         <lucide-icon [img]="contactIcons.Mail" [size]="24" class="text-white"></lucide-icon>
+       </div>
+       <p class="text-lg text-gray-600 font-bold">Write To US</p>
+     </div>
+ 
+     <!-- Body -->
+     <div class="flex flex-col gap-2">
+       <p>Fill out our form and we will contact you within 24 hours.</p>
+       <p>Emails: customer&#64;exclusive.com</p>
+       <p>Emails: support&#64;exclusive.com</p>
+     </div>
+  </div>
+
+
+  <div class="w-full max-w-[50rem] p-6 flex flex-col gap-6 rounded-lg shadow-lg">
+  <form class="flex flex-col gap-6 m-auto" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+
+    <!-- Inputs Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="flex flex-col">
+        <input 
+          type="text" 
+          placeholder="Your Name" 
+          formControlName="name"
+          class="border-none outline-none bg-gray-100 p-3 rounded w-full" 
+          [class.border-red-500]="f['name'].invalid && f['name'].touched"
+        />
+        @if (getErrorMessage('name')) {
+          <span class="text-red-500 text-sm mt-1">{{ getErrorMessage('name') }}</span>
+        }
+      </div>
+      <div class="flex flex-col">
+        <input 
+          type="text" 
+          placeholder="Your Phone" 
+          formControlName="phone"
+          class="border-none outline-none bg-gray-100 p-3 rounded w-full" 
+          [class.border-red-500]="f['phone'].invalid && f['phone'].touched"
+        />
+        @if (getErrorMessage('phone')) {
+          <span class="text-red-500 text-sm mt-1">{{ getErrorMessage('phone') }}</span>
+        }
+      </div>
+      <div class="flex flex-col">
+        <input 
+          type="email" 
+          placeholder="Your Email" 
+          formControlName="email"
+          class="border-none outline-none bg-gray-100 p-3 rounded w-full" 
+          [class.border-red-500]="f['email'].invalid && f['email'].touched"
+        />
+        @if (getErrorMessage('email')) {
+          <span class="text-red-500 text-sm mt-1">{{ getErrorMessage('email') }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="flex flex-col">
+      <textarea 
+        placeholder="Your Message" 
+        formControlName="message"
+        class="border-none outline-none bg-gray-100 p-3 rounded h-[10rem] resize-none"
+        [class.border-red-500]="f['message'].invalid && f['message'].touched"
+      ></textarea>
+      @if (getErrorMessage('message')) {
+        <span class="text-red-500 text-sm mt-1">{{ getErrorMessage('message') }}</span>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit" 
+      class="bg-red-500 text-white py-3 rounded hover:bg-red-600 transition font-semibold"
+    >
+      Send Message
+    </button>
+
+  </form>
+</div>
+
+</div>
+
