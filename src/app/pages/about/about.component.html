@@ -1,4 +1,27 @@
-<div class="max-w-[1170px] mx-auto py-6 pt-36">
+<div class="max-w-[1170px] mx-auto pt-14">
+
+  <p-breadcrumb class="max-w-full mb-10"
+  [model]="items"
+  [home]="home">
+
+  <!-- Item template -->
+  <ng-template #item let-item>
+    <a
+      class="cursor-pointer"
+      [routerLink]="item.routerLink"
+      routerLinkActive="text-black font-semibold"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ item.label }}
+    </a>
+  </ng-template>
+
+  <!-- Separator -->
+  <ng-template #separator><span class="text-gray-500 px-2">/</span></ng-template>
+</p-breadcrumb>
+
+<div class="mx-auto py-36 ">
+
   <div class="flex flex-row w-full gap-8">
     <div class="w-1/2 pr-4">
       <p class="text-4xl font-semibold mb-8">Our Story</p>
@@ -114,6 +137,7 @@
       </div>
     </div>
   }
+</div>
 </div>
 </div>
 
