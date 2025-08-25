@@ -1,0 +1,231 @@
+<div class="max-w-7xl mx-auto p-8 font-inter">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Billing Details Form -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-8 text-gray-800">Billing Details</h2>
+      
+      <form [formGroup]="billingForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- First Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            First Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="firstName"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            [class.ring-2]="billingForm.get('firstName')?.invalid && billingForm.get('firstName')?.touched"
+            [class.ring-red-500]="billingForm.get('firstName')?.invalid && billingForm.get('firstName')?.touched"
+          />
+          @if (getFieldError('firstName')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('firstName') }}</p>
+          }
+        </div>
+
+        <!-- Company Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+          <input
+            type="text"
+            formControlName="companyName"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+        </div>
+
+        <!-- Street Address -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Street Address <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="streetAddress"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            [class.ring-2]="billingForm.get('streetAddress')?.invalid && billingForm.get('streetAddress')?.touched"
+            [class.ring-red-500]="billingForm.get('streetAddress')?.invalid && billingForm.get('streetAddress')?.touched"
+          />
+          @if (getFieldError('streetAddress')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('streetAddress') }}</p>
+          }
+        </div>
+
+        <!-- Apartment -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Apartment, floor, etc. (optional)</label>
+          <input
+            type="text"
+            formControlName="apartment"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+        </div>
+
+        <!-- Town/City -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Town/City <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="townCity"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            [class.ring-2]="billingForm.get('townCity')?.invalid && billingForm.get('townCity')?.touched"
+            [class.ring-red-500]="billingForm.get('townCity')?.invalid && billingForm.get('townCity')?.touched"
+          />
+          @if (getFieldError('townCity')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('townCity') }}</p>
+          }
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Phone Number <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="tel"
+            formControlName="phoneNumber"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            [class.ring-2]="billingForm.get('phoneNumber')?.invalid && billingForm.get('phoneNumber')?.touched"
+            [class.ring-red-500]="billingForm.get('phoneNumber')?.invalid && billingForm.get('phoneNumber')?.touched"
+          />
+          @if (getFieldError('phoneNumber')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('phoneNumber') }}</p>
+          }
+        </div>
+
+        <!-- Email Address -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Email Address <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            formControlName="emailAddress"
+            class="w-full px-4 py-3 bg-gray-100 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            [class.ring-2]="billingForm.get('emailAddress')?.invalid && billingForm.get('emailAddress')?.touched"
+            [class.ring-red-500]="billingForm.get('emailAddress')?.invalid && billingForm.get('emailAddress')?.touched"
+          />
+          @if (getFieldError('emailAddress')) {
+            <p class="mt-1 text-sm text-red-600">{{ getFieldError('emailAddress') }}</p>
+          }
+        </div>
+
+        <!-- Save Information Checkbox -->
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="saveInfo"
+            formControlName="saveInfo"
+            class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500"
+          />
+          <label for="saveInfo" class="ml-2 text-sm text-gray-700">
+            Save this information for faster check-out next time
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <!-- Order Summary -->
+    <div>
+      <div class="space-y-6">
+        <!-- Cart Items -->
+        <div class="space-y-4">
+          @for (item of cartItems(); track item.id) {
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <img [src]="item.image" [alt]="item.name" class="w-12 h-12 object-cover rounded" />
+                <span class="font-medium text-gray-800">{{ item.name }}</span>
+              </div>
+              <span class="font-semibold text-gray-800">${{ (item.price * item.quantity).toFixed(2) }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Order Totals -->
+        <div class="border-t pt-6 space-y-4">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Subtotal:</span>
+            <span class="font-semibold">${{ cartSubtotal().toFixed(2) }}</span>
+          </div>
+
+          @if (couponApplied()) {
+            <div class="flex justify-between text-green-600">
+              <span>Discount ({{ couponDiscount() }}%):</span>
+              <span>-${{ ((cartSubtotal() * couponDiscount()) / 100).toFixed(2) }}</span>
+            </div>
+          }
+
+          <div class="flex justify-between">
+            <span class="text-gray-600">Shipping:</span>
+            <span class="font-semibold">Free</span>
+          </div>
+
+          <div class="flex justify-between text-lg font-bold border-t pt-4">
+            <span>Total:</span>
+            <span>${{ getFinalTotal() }}</span>
+          </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <input
+              type="radio"
+              id="bank"
+              name="payment"
+              (change)="setPaymentMethod('bank')"
+              [checked]="paymentMethod() === 'bank'"
+              class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500"
+            />
+            <label for="bank" class="text-sm font-medium text-gray-700">Bank</label>
+            <div class="flex space-x-2 ml-auto">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" class="h-6" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" class="h-6" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png" alt="Amex" class="h-6" />
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <input
+              type="radio"
+              id="cash"
+              name="payment"
+              (change)="setPaymentMethod('cash')"
+              [checked]="paymentMethod() === 'cash'"
+              class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500"
+            />
+            <label for="cash" class="text-sm font-medium text-gray-700">Cash on delivery</label>
+          </div>
+        </div>
+
+        <!-- Coupon Code -->
+        <div class="flex space-x-2">
+          <input
+            type="text"
+            placeholder="Coupon Code"
+            [ngModel]="couponCode()"
+            (ngModelChange)="couponCode.set($event)"
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+          <button
+            type="button"
+            (click)="applyCoupon()"
+            class="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition font-medium"
+          >
+            Apply Coupon
+          </button>
+        </div>
+
+        <!-- Place Order Button -->
+        <button
+          type="submit"
+          (click)="onSubmit()"
+          [disabled]="billingForm.invalid"
+          class="w-full py-4 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+        >
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

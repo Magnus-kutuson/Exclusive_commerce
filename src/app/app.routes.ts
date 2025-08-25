@@ -24,6 +24,21 @@ export const routes: Routes = [
             (m) => m.ContactComponent
           ),
       },
+            {
+              path: 'wishlist',
+              loadComponent: () =>
+                import('./pages/wishlist/wishlist.component').then((m) => m.WishlistComponent),
+            },
+            {
+              path: 'cart',
+              loadComponent: () =>
+                import('./pages/cart/cart.component').then((m) => m.CartComponent),
+            },
+            {
+              path: 'checkout',
+              loadComponent: () =>
+                import('./pages/checkout/checkout.component').then((m) => m.CheckoutComponent),
+            },
     ],
   },
   {

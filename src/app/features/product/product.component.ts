@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Heart, Eye, Star } from 'lucide-angular';
+import { LucideAngularModule, Heart, Eye, Star, ShoppingCart } from 'lucide-angular';
+import { ProductService, Product } from '../../core/services/product.service';
+import { WishlistService } from '../../core/services/wishlist.service';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -9,52 +12,47 @@ import { LucideAngularModule, Heart, Eye, Star } from 'lucide-angular';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent {
-  readonly icons = { Heart, Eye, Star };
+  readonly icons = { Heart, Eye, Star, ShoppingCart };
+  
+  private productService = inject(ProductService);
+  private wishlistService = inject(WishlistService);
+  private cartService = inject(CartService);
 
-  products: Array<{
-    id: number;
-    title: string;
-    image: string;
-    price: number;
-    rating: number; // 0-5
-  }> = [
-    {
-      id: 1,
-      title: 'Winter Jacket',
-      image:
-        'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop',
-      price: 260,
-      rating: 4.8,
-    },
-    {
-      id: 2,
-      title: 'Leather Handbag',
-      image:
-        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=1200&auto=format&fit=crop',
-      price: 960,
-      rating: 4.6,
-    },
-    {
-      id: 3,
-      title: 'RGB AIO Cooler',
-      image:
-        'https://images.unsplash.com/photo-1595432541891-a461100d3054?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3BlYWtlcnN8ZW58MHx8MHx8fDA%3D',
-      price: 160,
-      rating: 4.3,
-    },
-    {
-      id: 4,
-      title: 'Wooden Nightstand',
-      image:
-        'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop',
-      price: 360,
-      rating: 4.7,
-    },
-  ];
+  products = this.productService.getBestSellingProducts();
+
+  addToWishlist(product: Product) {
+    this.wishlistService.addToWishlist({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      rating: product.rating,
+      inStock: product.inStock,
+      discount: product.discount
+    });
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      inStock: product.inStock
+    });
+  }
 
   getStarsArray(rating: number): boolean[] {
     // Returns an array of 5 booleans indicating filled stars
     const filled = Math.round(rating);
     return Array.from({ length: 5 }, (_, i) => i < filled);
+  }
+
+  getDiscountPercentage(product: Product): number {
+    if (product.originalPrice && product.price < product.originalPrice) {
+      return Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+    }
+    return product.discount || 0;
   }
 }
