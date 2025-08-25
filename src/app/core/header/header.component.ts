@@ -17,9 +17,9 @@ import { WishlistService } from '../services/wishlist.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  private router = inject(Router);
-  private cartService = inject(CartService);
-  private wishlistService = inject(WishlistService);
+  private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
 
   isLoggedIn = true; 
   readonly icons = {
