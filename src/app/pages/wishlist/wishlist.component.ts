@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { WishlistService, WishlistItem } from '../../core/services/wishlist.service';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -11,6 +12,7 @@ import { WishlistService, WishlistItem } from '../../core/services/wishlist.serv
 })
 export class WishlistComponent {
   private wishlistService = inject(WishlistService);
+  private cartService = inject(CartService);
   
   wishlistItems = this.wishlistService.getWishlistItems();
   isEmpty = computed(() => this.wishlistItems().length === 0);
@@ -24,10 +26,15 @@ export class WishlistComponent {
   }
 
   addToCart(item: WishlistItem) {
-    // TODO: Implement cart service integration
-    console.log('Adding to cart:', item);
+    this.cartService.addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      inStock: item.inStock
+    });
     // Optionally remove from wishlist after adding to cart
-    // this.removeFromWishlist(item.id);
+    this.removeFromWishlist(item.id);
   }
 
   getDiscountPercentage(item: WishlistItem): number {
