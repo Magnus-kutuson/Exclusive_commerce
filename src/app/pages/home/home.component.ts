@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   private readonly sampleDataService = inject(SampleDataService);
 
   ngOnInit() {
-    // Initialize with some sample cart data for testing
     this.sampleDataService.addSampleDataToCart();
   }
 }
