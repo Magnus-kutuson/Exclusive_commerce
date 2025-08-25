@@ -1,1 +1,114 @@
-<p>wishlist works!</p>
+<div class="wishlist-container">
+  <!-- Header Section -->
+  <div class="wishlist-header">
+    <h1 class="wishlist-title">My Wishlist</h1>
+    <p class="wishlist-subtitle">{{ wishlistItems().length }} item(s) in your wishlist</p>
+    
+    @if (!isEmpty()) {
+      <button 
+        class="clear-wishlist-btn"
+        (click)="clearWishlist()"
+        type="button">
+        Clear All
+      </button>
+    }
+  </div>
+
+  <!-- Empty State -->
+  @if (isEmpty()) {
+    <div class="empty-wishlist">
+      <div class="empty-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h2 class="empty-title">Your wishlist is empty</h2>
+      <p class="empty-description">Start adding products you love to your wishlist</p>
+      <a routerLink="/home" class="continue-shopping-btn">
+        Continue Shopping
+      </a>
+    </div>
+  }
+
+  <!-- Wishlist Items -->
+  @if (!isEmpty()) {
+    <div class="wishlist-grid">
+      @for (item of wishlistItems(); track item.id) {
+        <div class="wishlist-item">
+          <!-- Remove Button -->
+          <button 
+            class="remove-btn"
+            (click)="removeFromWishlist(item.id)"
+            type="button"
+            aria-label="Remove from wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Product Image -->
+          <div class="product-image">
+            <img [src]="item.image" [alt]="item.name" loading="lazy">
+            
+            @if (getDiscountPercentage(item) > 0) {
+              <div class="discount-badge">
+                -{{ getDiscountPercentage(item) }}%
+              </div>
+            }
+
+            @if (!item.inStock) {
+              <div class="out-of-stock-overlay">
+                <span>Out of Stock</span>
+              </div>
+            }
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-info">
+            <h3 class="product-name">{{ item.name }}</h3>
+            
+            <!-- Rating -->
+            <div class="rating">
+              @for (filled of getStarArray(item.rating); track $index) {
+                <span class="star" [class.filled]="filled">★</span>
+              }
+              <span class="rating-value">({{ item.rating }})</span>
+            </div>
+
+            <!-- Price -->
+            <div class="price-section">
+              <span class="current-price">${{ item.price }}</span>
+              @if (item.originalPrice && item.originalPrice > item.price) {
+                <span class="original-price">${{ item.originalPrice }}</span>
+              }
+            </div>
+
+            <!-- Stock Status -->
+            <div class="stock-status" [class.in-stock]="item.inStock" [class.out-of-stock]="!item.inStock">
+              {{ item.inStock ? 'In Stock' : 'Out of Stock' }}
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button 
+                class="add-to-cart-btn"
+                [disabled]="!item.inStock"
+                (click)="addToCart(item)"
+                type="button">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Wishlist Actions -->
+    <div class="wishlist-actions">
+      <a routerLink="/home" class="continue-shopping-link">
+        ← Continue Shopping
+      </a>
+    </div>
+  }
+</div>
