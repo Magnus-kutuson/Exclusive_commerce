@@ -15,7 +15,7 @@ import { SampleDataService } from "../../core/services/sample-data.service";
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  private sampleDataService = inject(SampleDataService);
+  private readonly sampleDataService = inject(SampleDataService);
 
   ngOnInit() {
     // Initialize with some sample cart data for testing
