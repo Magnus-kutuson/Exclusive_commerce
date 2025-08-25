@@ -75,7 +75,7 @@
             <button
               (click)="addToCart(p)"
               [disabled]="!p.inStock"
-              class="w-full flex items-center justify-center gap-2 py-2 bg-red-500 hover:bg-red-600 disabled:bg-gray-400 disabled:cursor-not-allowed rounded font-medium transition-colors"
+              class="w-full flex items-center justify-center gap-2 py-2 disabled:bg-gray-400 disabled:cursor-not-allowed rounded font-medium transition-colors"
             >
               <lucide-angular [img]="categoryIcon.ShoppingCart" [size]="16" />
               {{ p.inStock ? 'Add To Cart' : 'Out of Stock' }}
