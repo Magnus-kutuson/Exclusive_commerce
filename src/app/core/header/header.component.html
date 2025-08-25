@@ -34,12 +34,22 @@
 
         <!-- Wishlist, Cart, and User -->
         <div class="flex gap-3 items-center">
-          <button type="button" aria-label="Add to wishlist">
+          <button type="button" (click)="navigateToWishlist()" class="relative" aria-label="View wishlist">
             <lucide-angular [img]="icons.Heart" [size]="20" />
+            @if (wishlistItems().length > 0) {
+              <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {{ wishlistItems().length }}
+              </span>
+            }
           </button>
 
-          <button type="button" aria-label="View shopping cart">
+          <button type="button" (click)="navigateToCart()" class="relative" aria-label="View shopping cart">
             <lucide-angular [img]="icons.ShoppingCart" [size]="20" />
+            @if (cartCount > 0) {
+              <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {{ cartCount }}
+              </span>
+            }
           </button>
 
           @if (isLoggedIn) {
