@@ -29,7 +29,7 @@ export class HeaderComponent {
     User
   };
 
-  cartCount = this.cartService.getCartCount();
+  cartCount = this.cartService.getCartCount;
   wishlistItems = this.wishlistService.getWishlistItems();
 
   navLinks = [
