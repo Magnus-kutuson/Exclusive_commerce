@@ -19,6 +19,10 @@ export const routes: Routes = [
                 path: 'contact',
                 loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)
             }
+            , {
+                path: '**',
+                loadComponent: () => import('./pages/bot-found/bot-found.component').then(m => m.BotFoundComponent)
+            }
         ]
     },
     {
