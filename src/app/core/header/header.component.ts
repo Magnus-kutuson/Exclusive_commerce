@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SubHeaderComponent } from '../sub-header/sub-header.component';
 import { RouterLink, RouterLinkActive, } from '@angular/router';
-import { LucideAngularModule, Search, Heart, ShoppingCart } from 'lucide-angular';
+import { LucideAngularModule, Search, Heart, ShoppingCart, User } from 'lucide-angular';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +15,12 @@ import { LucideAngularModule, Search, Heart, ShoppingCart } from 'lucide-angular
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  isLoggedIn = false; 
   readonly icons = {
     Search,
     Heart,
     ShoppingCart,
+    User
   };
 
   navLinks = [

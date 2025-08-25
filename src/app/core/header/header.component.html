@@ -1,43 +1,55 @@
 <div>
-    <app-sub-header></app-sub-header>
-    <div class="border-b border-gray-200">
-  <div class="h-[38px] max-w-[1170px] mx-auto my-7 flex items-center justify-between">
-    <h1 class="text-2xl font-bold">
-      Exclu<span class="text-red-500">sive</span>
-    </h1>
+  <app-sub-header></app-sub-header>
+  <div class="border-b border-gray-200">
+    <div class="h-[38px] max-w-[1170px] mx-auto my-7 flex items-center justify-between">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold">
+        Exclu<span class="text-red-500">sive</span>
+      </h1>
 
-   <nav class="flex gap-8" role="navigation" aria-label="Main Navigation">
-  @for (link of navLinks; track link.label) {
-    <a [routerLink]="link.link"
-       class="text-gray-600"
-       routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">
-      {{ link.label }}
-    </a>
-  }
-</nav>
+      <!-- Navigation -->
+      <nav class="flex gap-8" role="navigation" aria-label="Main Navigation">
+        @for (link of navLinks; track link.label) {
+          @if (!(isLoggedIn && link.label === 'Signup')) {
+            <a [routerLink]="link.link"
+              class="text-gray-600"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+              {{ link.label }}
+            </a>
+          }
+        }
+      </nav>
 
-    <div class="flex items-center gap-6">
-     
-      <div class="border border-gray-300 rounded px-2 py-1 flex items-center w-[15.1875rem] h-[2.375rem] bg-gray-200">
-        <input
-          type="text"
-          class="flex-1 border-none outline-none bg-gray-200"
-          placeholder="What are you looking for?"
-        />
-        <lucide-angular [img]="icons.Search" [size]="20" class="text-gray-500" />
-      </div>
+      <!-- Right-side icons -->
+      <div class="flex items-center gap-6">
+        <!-- Search box -->
+        <div class="border border-gray-300 rounded px-2 py-1 flex items-center w-[15.1875rem] h-[2.375rem] bg-gray-200">
+          <input
+            type="text"
+            class="flex-1 border-none outline-none bg-gray-200"
+            placeholder="What are you looking for?" />
+          <lucide-angular [img]="icons.Search" [size]="20" class="text-gray-500" />
+        </div>
 
-     
-      <div class="flex gap-3">
-        <button type="button" aria-label="Add to wishlist">
-          <lucide-angular [img]="icons.Heart" [size]="20" />
-        </button>
-        <button type="button" aria-label="View shopping cart">
-          <lucide-angular [img]="icons.ShoppingCart" [size]="20"  />
-        </button>
+        <!-- Wishlist, Cart, and User -->
+        <div class="flex gap-3 items-center">
+          <button type="button" aria-label="Add to wishlist">
+            <lucide-angular [img]="icons.Heart" [size]="20" />
+          </button>
+
+          <button type="button" aria-label="View shopping cart">
+            <lucide-angular [img]="icons.ShoppingCart" [size]="20" />
+          </button>
+
+          @if (isLoggedIn) {
+            <button type="button" aria-label="User profile">
+              <lucide-angular [img]="icons.User" [size]="20" />
+            </button>
+          }
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
