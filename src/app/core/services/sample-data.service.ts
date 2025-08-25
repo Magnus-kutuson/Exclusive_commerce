@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { WishlistService, WishlistItem } from './wishlist.service';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SampleDataService {
   private readonly wishlistService = inject(WishlistService);
+  private readonly cartService = inject(CartService);
 
   getSampleProducts(): WishlistItem[] {
     return [
@@ -67,5 +69,33 @@ export class SampleDataService {
 
   clearSampleData() {
     this.wishlistService.clearWishlist();
+  }
+
+  addSampleDataToCart() {
+    // Add some sample items to cart for testing
+    this.cartService.addToCart({
+      id: 'cart1',
+      name: 'LCD Monitor',
+      price: 650,
+      image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=300&fit=crop',
+      inStock: true
+    });
+
+    this.cartService.addToCart({
+      id: 'cart2',
+      name: 'H1 Gamepad',
+      price: 550,
+      image: 'https://images.unsplash.com/photo-1605300781394-60d4db501b2f?w=400&h=300&fit=crop',
+      inStock: true
+    });
+
+    // Add one more of the gamepad to test quantity
+    this.cartService.addToCart({
+      id: 'cart2',
+      name: 'H1 Gamepad',
+      price: 550,
+      image: 'https://images.unsplash.com/photo-1605300781394-60d4db501b2f?w=400&h=300&fit=crop',
+      inStock: true
+    });
   }
 }
