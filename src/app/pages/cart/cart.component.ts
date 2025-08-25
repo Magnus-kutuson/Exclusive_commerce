@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CartService, CartItem } from '../../core/services/cart.service';
 
@@ -12,6 +12,7 @@ import { CartService, CartItem } from '../../core/services/cart.service';
 })
 export class CartComponent {
   private readonly cartService = inject(CartService);
+  private readonly router = inject(Router);
 
   cartItems = this.cartService.getCartItems();
   cartSubtotal = this.cartService.getCartSubtotal; 
@@ -68,7 +69,7 @@ export class CartComponent {
   }
 
   proceedToCheckout() {
-    console.log('Proceeding to checkout with items:', this.cartItems());
+    this.router.navigate(['/checkout']);
   }
 
   getItemSubtotal(item: CartItem): number {
@@ -76,7 +77,7 @@ export class CartComponent {
   }
 
   getFinalTotal(): number {
-    const subtotal = this.cartSubtotal(); // ✅ () because it's a computed signal
+    const subtotal = this.cartSubtotal(); // () because it's a computed signal
     const discount = (subtotal * this.couponDiscount()) / 100;
     return +(subtotal - discount).toFixed(2);
   }
