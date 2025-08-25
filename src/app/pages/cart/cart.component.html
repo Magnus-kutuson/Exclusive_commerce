@@ -1,0 +1,127 @@
+<div class="max-w-6xl mx-auto p-8 font-inter">
+  <!-- Empty Cart State -->
+  @if (isEmpty()) {
+    <div class="flex justify-center items-center min-h-[400px]">
+      <div class="text-center">
+        <h2 class="text-2xl mb-4 text-gray-800">Your cart is empty</h2>
+        <p class="text-gray-600 mb-8 text-lg">Add some items to get started</p>
+        <button routerLink="/home" class="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
+          Return To Shop
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Cart with Items -->
+  @if (!isEmpty()) {
+    <div>
+      <!-- Cart Header -->
+      <div class="hidden md:grid grid-cols-[1fr_120px_150px_120px] gap-4 py-4 border-b font-semibold text-gray-800">
+        <div class="pl-12 text-left">Product</div>
+        <div class="text-center">Price</div>
+        <div class="text-center">Quantity</div>
+        <div class="text-center">Subtotal</div>
+      </div>
+
+      <!-- Cart Items -->
+      <div>
+        @for (item of cartItems(); track item.id) {
+          <div class="relative grid md:grid-cols-[1fr_120px_150px_120px] gap-4 items-center py-6 border-b">
+            <!-- Remove button -->
+            <button (click)="removeFromCart(item.id)" 
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-red-600 hover:bg-red-700 w-6 h-6 flex items-center justify-center text-white rounded-full md:static md:translate-y-0 md:ml-2">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <!-- Product -->
+            <div class="flex items-center gap-4 pl-12 md:pl-12">
+              <img [src]="item.image" [alt]="item.name" class="w-16 h-16 object-cover rounded-md border" />
+              <span class="font-medium text-gray-800">{{ item.name }}</span>
+            </div>
+
+            <!-- Price -->
+            <div class="text-center font-semibold text-gray-800 before:content-['Price:_'] md:before:content-none">
+              ${{ item.price }}
+            </div>
+
+            <!-- Quantity -->
+            <div class="flex justify-center before:content-['Quantity:_'] md:before:content-none">
+              <div class="flex items-center border rounded">
+                <button (click)="decreaseQuantity(item.id, item.quantity)" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 font-semibold">-</button>
+                <input type="number" [value]="item.quantity" 
+                  (change)="onQuantityChange($event, item.id)" 
+                  min="1" 
+                  class="w-14 text-center border-0 focus:ring-0 font-medium" />
+                <button (click)="increaseQuantity(item.id, item.quantity)" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 font-semibold">+</button>
+              </div>
+            </div>
+
+            <!-- Subtotal -->
+            <div class="text-center font-semibold text-gray-800 before:content-['Subtotal:_'] md:before:content-none">
+              ${{ getItemSubtotal(item) }}
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Cart Actions -->
+      <div class="flex flex-col md:flex-row justify-between gap-4 my-8">
+        <button routerLink="/home" class="px-6 py-3 border bg-white rounded-md hover:bg-gray-100 font-medium">
+          Return To Shop
+        </button>
+        <button (click)="updateCart()" class="px-6 py-3 border bg-white rounded-md hover:bg-gray-100 font-medium">
+          Update Cart
+        </button>
+      </div>
+
+      <!-- Coupon Section -->
+      <div class="my-8">
+        <div class="flex flex-col md:flex-row max-w-md">
+          <input type="text" placeholder="Coupon Code" 
+            [ngModel]="couponCode()" 
+            (ngModelChange)="couponCode.set($event)"
+            class="flex-1 px-4 py-3 border rounded-md md:rounded-l-md md:rounded-r-none focus:outline-none focus:border-red-600 placeholder-gray-400" />
+          <button (click)="applyCoupon()" 
+            class="mt-2 md:mt-0 px-6 py-3 bg-red-600 text-white rounded-md md:rounded-r-md md:rounded-l-none hover:bg-red-700 transition">
+            Apply Coupon
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Total -->
+      <div class="bg-gray-50 p-6 rounded-lg max-w-md ml-auto">
+        <h3 class="mb-6 text-lg font-semibold text-gray-800">Cart Total</h3>
+
+        <div class="flex justify-between mb-3 text-gray-600">
+          <span>Subtotal:</span>
+          <span>${{ cartSubtotal() }}</span>
+        </div>
+
+        @if (couponApplied()) {
+          <div class="flex justify-between mb-3 text-gray-600">
+            <span>Discount ({{ couponDiscount() }}%):</span>
+            <span>- ${{ ((cartSubtotal() * couponDiscount()) / 100).toFixed(2) }}</span>
+          </div>
+        }
+
+        <div class="flex justify-between mb-3 text-gray-600">
+          <span>Shipping:</span>
+          <span>Free</span>
+        </div>
+
+        <div class="flex justify-between pt-4 mt-4 border-t font-semibold text-gray-800 text-lg">
+          <span>Total:</span>
+          <span>${{ getFinalTotal() }}</span>
+        </div>
+
+        <button (click)="proceedToCheckout()" 
+          class="w-full mt-6 py-3 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 transition">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  }
+</div>
