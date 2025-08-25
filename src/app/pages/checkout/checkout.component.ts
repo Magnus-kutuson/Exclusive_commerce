@@ -71,7 +71,6 @@ export class CheckoutComponent {
       };
 
       console.log('Order submitted:', orderData);
-      alert('Order placed successfully! (This is a demo)');
       
       this.cartService.clearCart();
     } else {
