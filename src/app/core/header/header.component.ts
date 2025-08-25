@@ -21,7 +21,7 @@ export class HeaderComponent {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
 
-  isLoggedIn = true; 
+  isLoggedIn = false; 
   readonly icons = {
     Search,
     Heart,
